@@ -1,0 +1,1380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sri Devi Bhavan Hotel - Digital Menu</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #8B0000 0%, #DC143C 100%);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        .mascot {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 80px;
+            height: 80px;
+            background: #8B0000;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            border: 3px solid #FFD700;
+        }
+
+        .hotel-name {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .since-1953 {
+            background: #FFD700;
+            color: #8B0000;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        .address {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .menu-section {
+            background: rgba(255, 255, 255, 0.95);
+            margin: 20px 0;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            backdrop-filter: blur(10px);
+        }
+
+        .section-header {
+            background: linear-gradient(135deg, #8B0000 0%, #DC143C 100%);
+            color: white;
+            padding: 15px 25px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-align: center;
+            position: relative;
+        }
+
+        .section-header::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 15px solid transparent;
+            border-right: 15px solid transparent;
+            border-top: 10px solid #DC143C;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 25px;
+        }
+
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(139, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .menu-item:hover {
+            background: rgba(255, 215, 0, 0.1);
+            padding-left: 10px;
+            border-radius: 8px;
+        }
+
+        .menu-item:last-child {
+            border-bottom: none;
+        }
+
+        .item-name {
+            font-weight: 600;
+            color: #333;
+            flex: 1;
+        }
+
+        .price-container {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .price {
+            font-weight: bold;
+            color: #8B0000;
+            min-width: 60px;
+            text-align: right;
+        }
+
+        .service-price {
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            padding: 4px 8px;
+            border-radius: 15px;
+            font-size: 0.9rem;
+        }
+
+        .parcel-price {
+            background: linear-gradient(135deg, #8B0000, #DC143C);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 15px;
+            font-size: 0.9rem;
+        }
+
+        .special-notice {
+            background: linear-gradient(135deg, #32CD32, #228B22);
+            color: white;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .contact-info {
+            background: linear-gradient(135deg, #8B0000 0%, #DC143C 100%);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            margin-top: 20px;
+            border-radius: 15px;
+        }
+
+        .phone {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .timing {
+            background: rgba(255, 215, 0, 0.2);
+            padding: 10px;
+            border-radius: 8px;
+            margin: 10px 0;
+            font-style: italic;
+        }
+
+        @media (max-width: 768px) {
+            .mascot {
+                display: none;
+            }
+            
+            .hotel-name {
+                font-size: 2rem;
+            }
+            
+            .menu-grid {
+                grid-template-columns: 1fr;
+                padding: 15px;
+            }
+            
+            .price-container {
+                flex-direction: column;
+                gap: 5px;
+                align-items: flex-end;
+            }
+        }
+
+        .legend {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+        }
+
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 10px;
+        }
+
+        .service-legend {
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+        }
+
+        .parcel-legend {
+            background: linear-gradient(135deg, #8B0000, #DC143C);
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="mascot">👨‍🍳</div>
+        <div class="since-1953">Since 1953</div>
+        <h1 class="hotel-name">SRI DEVI BHAVAN HOTEL</h1>
+        <p class="address">Hosur Road, Wilson Garden, Bengaluru - 560110</p>
+    </div>
+
+    <div class="container">
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-color service-legend"></div>
+                <span>Service Price</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color parcel-legend"></div>
+                <span>Parcel Price</span>
+            </div>
+        </div>
+
+        <!-- Hot Beverages -->
+        <div class="menu-section">
+            <div class="section-header">HOT BEVERAGES</div>
+            <div class="menu-grid">
+                <div>
+                    <div class="menu-item">
+                        <span class="item-name">Tea/Coffee</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹20</span>
+                            <span class="price parcel-price">₹30</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Less Tea</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹20</span>
+                            <span class="price parcel-price">₹30</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Badam Milk</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹30</span>
+                            <span class="price parcel-price">₹30</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Horlicks/Bournvita/Boost</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹30</span>
+                            <span class="price parcel-price">₹40</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Breakfast -->
+        <div class="menu-section">
+            <div class="section-header">BREAKFAST</div>
+            <div class="menu-grid">
+                <div>
+                    <div class="menu-item">
+                        <span class="item-name">Idli 2</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹40</span>
+                            <span class="price parcel-price">₹45</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Idli 3</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹55</span>
+                            <span class="price parcel-price">₹60</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Vada</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹35</span>
+                            <span class="price parcel-price">₹40</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Idli Vada</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹70</span>
+                            <span class="price parcel-price">₹75</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Idli Vada (Single)</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹60</span>
+                            <span class="price parcel-price">₹65</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Idli (Single)</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹25</span>
+                            <span class="price parcel-price">₹25</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Poori 3</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹70</span>
+                            <span class="price parcel-price">₹75</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Poori 2</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹50</span>
+                            <span class="price parcel-price">₹60</span>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="menu-item">
+                        <span class="item-name">Rice Bath</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹65</span>
+                            <span class="price parcel-price">₹70</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Half Rice Bath</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹35</span>
+                            <span class="price parcel-price">₹40</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Chow Chow Bath</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹70</span>
+                            <span class="price parcel-price">₹80</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Kesari Bath</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹40</span>
+                            <span class="price parcel-price">₹45</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Khara Bath</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹40</span>
+                            <span class="price parcel-price">₹45</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Rava Idli 1</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹35</span>
+                            <span class="price parcel-price">₹40</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Rava Idli 2</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹70</span>
+                            <span class="price parcel-price">₹80</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Shavige Bath</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹70</span>
+                            <span class="price parcel-price">₹80</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Half Shavige Bath</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹40</span>
+                            <span class="price parcel-price">₹45</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sweets -->
+        <div class="menu-section">
+            <div class="section-header">SWEETS</div>
+            <div class="menu-grid">
+                <div>
+                    <div class="menu-item">
+                        <span class="item-name">Payasa</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹30</span>
+                            <span class="price parcel-price">₹30</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Gulab Jamoon</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹30</span>
+                            <span class="price parcel-price">₹30</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Carrot Halwa</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹50</span>
+                            <span class="price parcel-price">₹50</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Kashi Halwa</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹50</span>
+                            <span class="price parcel-price">₹50</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Holige</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹30</span>
+                            <span class="price parcel-price">₹35</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Mysore Pak (100 gram)</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹60</span>
+                            <span class="price parcel-price">₹60</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Badusha (2 pc)</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹60</span>
+                            <span class="price parcel-price">₹60</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Evening Special -->
+        <div class="menu-section">
+            <div class="section-header">EVENING SPECIAL</div>
+            <div class="menu-grid">
+                <div>
+                    <div class="menu-item">
+                        <span class="item-name">Plain Thatte Idli (1 pc)</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹25</span>
+                            <span class="price parcel-price">₹35</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Plain Thatte Idli (2 pc)</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹50</span>
+                            <span class="price parcel-price">₹60</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Ghee Thatte Idli (1 pc)</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹35</span>
+                            <span class="price parcel-price">₹40</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Butter Thatte Idli (1 pc)</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹35</span>
+                            <span class="price parcel-price">₹40</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Ghee Pudi Thatte Idli (1 pc)</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹55</span>
+                            <span class="price parcel-price">₹60</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Masala Vade (1 pc)</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹10</span>
+                            <span class="price parcel-price">₹10</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Small Uddina Vade (1 pc)</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹15</span>
+                            <span class="price parcel-price">₹15</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Button Idli</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹60</span>
+                            <span class="price parcel-price">₹70</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Ghee Button Idli</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹70</span>
+                            <span class="price parcel-price">₹80</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Ghee Pudi Button Idli</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹75</span>
+                            <span class="price parcel-price">₹85</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- South Indian Meals -->
+        <div class="menu-section">
+            <div class="section-header">SOUTH BANANA LEAF MEALS</div>
+            <div class="menu-grid">
+                <div>
+                    <div class="menu-item">
+                        <span class="item-name">Poori Meals</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹110</span>
+                            <span class="price parcel-price">₹120</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Chapathi Meals</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹110</span>
+                            <span class="price parcel-price">₹120</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Chapathi 1</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹25</span>
+                            <span class="price parcel-price">₹30</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Chapathi Plate</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹50</span>
+                            <span class="price parcel-price">₹55</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Extra Rice</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹40</span>
+                            <span class="price parcel-price">₹40</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Rice Sambar</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹60</span>
+                            <span class="price parcel-price">₹65</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Curd Rice</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹65</span>
+                            <span class="price parcel-price">₹70</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="special-notice">
+                <div class="timing">Special Holige Meals - ₹180 Service / ₹200 Parcel</div>
+                <div>(Every Thursday to Monday only)</div>
+            </div>
+        </div>
+
+        <!-- Dosa Items -->
+        <div class="menu-section">
+            <div class="section-header">DOSA ITEMS</div>
+            <div class="menu-grid">
+                <div>
+                    <div class="menu-item">
+                        <span class="item-name">Masala Dosa</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹70</span>
+                            <span class="price parcel-price">₹75</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Set Dosa</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹70</span>
+                            <span class="price parcel-price">₹75</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Plain Dosa</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹55</span>
+                            <span class="price parcel-price">₹60</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Khali Dosa</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹70</span>
+                            <span class="price parcel-price">₹75</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Onion Dosa</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹80</span>
+                            <span class="price parcel-price">₹90</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Butter Masala</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹80</span>
+                            <span class="price parcel-price">₹85</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Ghee Onion Dosa</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹95</span>
+                            <span class="price parcel-price">₹100</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Ghee Set Dosa</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹80</span>
+                            <span class="price parcel-price">₹85</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Ghee Plain Dosa</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹60</span>
+                            <span class="price parcel-price">₹70</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Ghee Khali Dosa</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹80</span>
+                            <span class="price parcel-price">₹85</span>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="menu-item">
+                        <span class="item-name">Rava Plain Dosa</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹70</span>
+                            <span class="price parcel-price">₹75</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Rava Masala Dosa</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹80</span>
+                            <span class="price parcel-price">₹85</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Rava Onion Masala</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹90</span>
+                            <span class="price parcel-price">₹95</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Ragi Plain Dosa</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹70</span>
+                            <span class="price parcel-price">₹75</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Ragi Masala Dosa</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹80</span>
+                            <span class="price parcel-price">₹85</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Ragi Onion Dosa</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹90</span>
+                            <span class="price parcel-price">₹100</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Paper Plain Dosa</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹100</span>
+                            <span class="price parcel-price">₹110</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Rice Masala</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹100</span>
+                            <span class="price parcel-price">₹110</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Baby Masala</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹65</span>
+                            <span class="price parcel-price">₹70</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sri Devi Bhavan Special Dosa Items -->
+        <div class="menu-section">
+            <div class="section-header">SRI DEVI BHAVAN SPECIAL DOSA ITEMS</div>
+            <div class="menu-grid">
+                <div>
+                    <div class="menu-item">
+                        <span class="item-name">Ghee Masala Dosa</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹80</span>
+                            <span class="price parcel-price">₹85</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Rava Onion Ghee Masala Dosa</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹100</span>
+                            <span class="price parcel-price">₹110</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Paper Masala Dosa</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹130</span>
+                            <span class="price parcel-price">₹140</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Family Masala Dosa</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹290</span>
+                            <span class="price parcel-price">₹320</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Neer Dosa</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹80</span>
+                            <span class="price parcel-price">₹85</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Palak Masala Dosa</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹90</span>
+                            <span class="price parcel-price">₹100</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Cheese Masala Dosa</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹100</span>
+                            <span class="price parcel-price">₹110</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Paneer Masala Dosa</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹110</span>
+                            <span class="price parcel-price">₹120</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Palak Cheese Masala Dosa</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹120</span>
+                            <span class="price parcel-price">₹130</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Paneer Cheese Masala Dosa</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹120</span>
+                            <span class="price parcel-price">₹130</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Chinese -->
+        <div class="menu-section">
+            <div class="section-header">CHINESE</div>
+            <div class="timing">Time: 2:00 PM to 11:00 PM</div>
+            <div class="menu-grid">
+                <div>
+                    <h4 style="color: #8B0000; margin-bottom: 15px;">RICE ITEMS</h4>
+                    <div class="menu-item">
+                        <span class="item-name">Gobi Manchuri</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹100</span>
+                            <span class="price parcel-price">₹110</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Mushroom Manchuri</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹110</span>
+                            <span class="price parcel-price">₹120</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Baby Corn Manchuri</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹100</span>
+                            <span class="price parcel-price">₹110</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Paneer Manchuri</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹130</span>
+                            <span class="price parcel-price">₹140</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Veg Fried Rice</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹100</span>
+                            <span class="price parcel-price">₹110</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Jeera Rice</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹100</span>
+                            <span class="price parcel-price">₹110</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Ghee Rice</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹100</span>
+                            <span class="price parcel-price">₹110</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Gobi Rice</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹110</span>
+                            <span class="price parcel-price">₹120</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Baby Corn Rice</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹120</span>
+                            <span class="price parcel-price">₹130</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Mushroom Rice</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹120</span>
+                            <span class="price parcel-price">₹130</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Paneer Rice</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹130</span>
+                            <span class="price parcel-price">₹150</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Garlic Fried Rice</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹110</span>
+                            <span class="price parcel-price">₹120</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Capsicum Fried Rice</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹100</span>
+                            <span class="price parcel-price">₹110</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Schezwan Rice</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹120</span>
+                            <span class="price parcel-price">₹130</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Masala Rice</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹110</span>
+                            <span class="price parcel-price">₹120</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Tamato Rice</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹100</span>
+                            <span class="price parcel-price">₹110</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Singapore Rice</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹110</span>
+                            <span class="price parcel-price">₹120</span>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h4 style="color: #8B0000; margin-bottom: 15px;">NOODLES & OTHER ITEMS</h4>
+                    <div class="menu-item">
+                        <span class="item-name">Mushroom Pepper Dry</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹130</span>
+                            <span class="price parcel-price">₹140</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Baby Corn Pepper Dry</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹120</span>
+                            <span class="price parcel-price">₹130</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Paneer Pepper Dry</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹140</span>
+                            <span class="price parcel-price">₹150</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Veg Noodles</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹100</span>
+                            <span class="price parcel-price">₹110</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Gobi Noodles</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹120</span>
+                            <span class="price parcel-price">₹130</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Baby Corn Noodles</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹120</span>
+                            <span class="price parcel-price">₹130</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Mushroom Noodles</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹130</span>
+                            <span class="price parcel-price">₹140</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Paneer Noodles</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹140</span>
+                            <span class="price parcel-price">₹150</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Schezwan Noodles</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹130</span>
+                            <span class="price parcel-price">₹140</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Baby Corn Chilly</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹120</span>
+                            <span class="price parcel-price">₹130</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Mushroom Chilly</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹130</span>
+                            <span class="price parcel-price">₹140</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Paneer Chilly</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹140</span>
+                            <span class="price parcel-price">₹150</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Gobi Chilly</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹110</span>
+                            <span class="price parcel-price">₹120</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Baby Corn 65</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹110</span>
+                            <span class="price parcel-price">₹120</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Paneer 65</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹150</span>
+                            <span class="price parcel-price">₹160</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Gobi 65</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹110</span>
+                            <span class="price parcel-price">₹120</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Mushroom 65</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹130</span>
+                            <span class="price parcel-price">₹140</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Aloo 65</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹100</span>
+                            <span class="price parcel-price">₹110</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="timing">Tandoor Time: 03:00 PM to 12:00 AM</div>
+        </div>
+
+        <!-- Snacks -->
+        <div class="menu-section">
+            <div class="section-header">SNACKS</div>
+            <div class="menu-grid">
+                <div>
+                    <div class="menu-item">
+                        <span class="item-name">Curd Vada</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹50</span>
+                            <span class="price parcel-price">₹55</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Maddurvada 1</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹15</span>
+                            <span class="price parcel-price">₹15</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Maddurvada Plate</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹60</span>
+                            <span class="price parcel-price">₹65</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Bhajji/Pakoda</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹60</span>
+                            <span class="price parcel-price">₹65</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Butter Muruku</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹50</span>
+                            <span class="price parcel-price">₹60</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Mangalore Buns</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹40</span>
+                            <span class="price parcel-price">₹45</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Bonda Soup</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹50</span>
+                            <span class="price parcel-price">₹60</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Samosa 2 PCS</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹30</span>
+                            <span class="price parcel-price">₹30</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tandoor Items -->
+        <div class="menu-section">
+            <div class="section-header">TANDOOR ITEMS</div>
+            <div class="menu-grid">
+                <div>
+                    <div class="menu-item">
+                        <span class="item-name">Roti Curry Single</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹55</span>
+                            <span class="price parcel-price">₹60</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Roti</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹90</span>
+                            <span class="price parcel-price">₹100</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Butter Roti</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹100</span>
+                            <span class="price parcel-price">₹110</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Naan</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹90</span>
+                            <span class="price parcel-price">₹100</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Butter Naan</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹100</span>
+                            <span class="price parcel-price">₹110</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Kulcha</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹100</span>
+                            <span class="price parcel-price">₹110</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Butter Kulcha</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹110</span>
+                            <span class="price parcel-price">₹120</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Aloo Parota Sin 1</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹100</span>
+                            <span class="price parcel-price">₹110</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Paneer Parota 1</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹140</span>
+                            <span class="price parcel-price">₹150</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Vegetable Parota 1</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹120</span>
+                            <span class="price parcel-price">₹130</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Gobi Parota 1</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹110</span>
+                            <span class="price parcel-price">₹120</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Extra Roti 1</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹30</span>
+                            <span class="price parcel-price">₹30</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Extra Butter Roti 1</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹35</span>
+                            <span class="price parcel-price">₹40</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Extra Naan 1</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹60</span>
+                            <span class="price parcel-price">₹70</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Extra Butter Naan 1</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹70</span>
+                            <span class="price parcel-price">₹80</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Papad</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹50</span>
+                            <span class="price parcel-price">₹50</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Masala Papad</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹60</span>
+                            <span class="price parcel-price">₹70</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Paneer Butter Masala</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹160</span>
+                            <span class="price parcel-price">₹170</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Dal Fry</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹150</span>
+                            <span class="price parcel-price">₹160</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Mushroom Curry</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹160</span>
+                            <span class="price parcel-price">₹170</span>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Tomato Curry</span>
+                        <div class="price-container">
+                            <span class="price service-price">₹150</span>
+                            <span class="price parcel-price">₹160</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="contact-info">
+            <h3>Contact Information</h3>
+            <div class="phone">📞 9972463835</div>
+            <p style="margin-top: 15px;">
+                <strong>Services Available:</strong><br>
+                ✓ Party Orders Undertaken<br>
+                ✓ Order once placed will not be cancelled<br>
+                ✓ GST/Taxes are applicable
+            </p>
+            <p style="margin-top: 10px; font-style: italic;">
+                Hot Water / Filter Water Available - Please ask<br>
+                Artificial Colour - Tasting Powder Not used in our hotel
+            </p>
+            <div style="margin-top: 15px; font-size: 0.9rem; opacity: 0.9;">
+                After order wait 10 to 15 min - Please co-operate
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Add smooth scrolling and interactive features
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add hover effects to menu items
+            const menuItems = document.querySelectorAll('.menu-item');
+            menuItems.forEach(item => {
+                item.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateX(5px)';
+                });
+                item.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateX(0)';
+                });
+            });
+
+            // Add click-to-call functionality
+            const phoneNumbers = document.querySelectorAll('.phone');
+            phoneNumbers.forEach(phone => {
+                phone.style.cursor = 'pointer';
+                phone.addEventListener('click', function() {
+                    window.location
+                
