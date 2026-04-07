@@ -1,0 +1,134 @@
+{
+  "restaurant": {
+    "name": "SRI DEVI BHAVAN HOTEL",
+    "tagline": "Restaurants & Catering - Since 1953",
+    "address": "7 B.B Road, Near Old Bus Stand, Devanahalli 562110",
+    "logo": "Food images/logo1.jpg",
+    "phones": [
+      "9972463835",
+      "9972731953"
+    ]
+  },
+  "sections": [
+    {
+      "id": "beverages",
+      "tab": "☕ Beverages",
+      "icon": "☕",
+      "name": "HOT BEVERAGES",
+      "time": "",
+      "cards": [],
+      "notice": null,
+      "listGroups": []
+    },
+    {
+      "id": "breakfast",
+      "tab": "🍳 Breakfast",
+      "icon": "🍳",
+      "name": "BREAKFAST",
+      "time": "",
+      "cards": [],
+      "notice": null,
+      "listGroups": []
+    },
+    {
+      "id": "sweets",
+      "tab": "🍮 Sweets",
+      "icon": "🍮",
+      "name": "SWEETS",
+      "time": "",
+      "cards": [],
+      "notice": null,
+      "listGroups": []
+    },
+    {
+      "id": "evening",
+      "tab": "🌙 Evening",
+      "icon": "🌙",
+      "name": "EVENING SPECIAL",
+      "time": "",
+      "cards": [],
+      "notice": null,
+      "listGroups": []
+    },
+    {
+      "id": "meals",
+      "tab": "🍛 Meals",
+      "icon": "🍛",
+      "name": "SOUTH BANANA LEAF MEALS",
+      "time": "",
+      "cards": [],
+      "notice": {
+        "main": "🍃 Special Holige Meals — ₹205",
+        "sub": "Every Thursday to Monday only"
+      },
+      "listGroups": []
+    },
+    {
+      "id": "dosa",
+      "tab": "🫓 Dosa",
+      "icon": "🫓",
+      "name": "DOSA ITEMS",
+      "time": "",
+      "cards": [],
+      "notice": null,
+      "listGroups": []
+    },
+    {
+      "id": "sdbspecial",
+      "tab": "⭐ SDB Special",
+      "icon": "⭐",
+      "name": "SDB SPECIAL DOSA",
+      "time": "",
+      "cards": [],
+      "notice": null,
+      "listGroups": []
+    },
+    {
+      "id": "chinese",
+      "tab": "🍜 Chinese",
+      "icon": "🍜",
+      "name": "CHINESE",
+      "time": "2:00 PM – 11:00 PM",
+      "cards": [],
+      "notice": null,
+      "listGroups": []
+    },
+    {
+      "id": "snacks",
+      "tab": "🥨 Snacks",
+      "icon": "🥨",
+      "name": "SNACKS",
+      "time": "",
+      "cards": [],
+      "notice": null,
+      "listGroups": []
+    },
+    {
+      "id": "tandoor",
+      "tab": "🫙 Tandoor",
+      "icon": "🫙",
+      "name": "TANDOOR ITEMS",
+      "time": "3:00 PM – 12:00 AM",
+      "cards": [],
+      "notice": null,
+      "listGroups": [
+        {
+          "title": "ROTI & NAAN",
+          "items": []
+        },
+        {
+          "title": "PAROTA",
+          "items": []
+        },
+        {
+          "title": "EXTRA BREADS",
+          "items": []
+        },
+        {
+          "title": "SIDES & CURRIES",
+          "items": []
+        }
+      ]
+    }
+  ]
+}
